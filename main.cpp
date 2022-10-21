@@ -11,18 +11,18 @@ class Object
         string information;
 };
 
-Object object[256];
+Object object[256]; //å…¨å±€å˜é‡ï¼Œæ‰€æœ‰ç‰©å“ä¿¡æ¯éƒ½åœ¨è¿™ä¸ªçº¿æ€§è¡¨ä¸­
 
-//²é¿´ÒÑ¾­ÓĞ¶àÉÙÖÖÎïÆ·
 int kindsOfObject()
+//æŸ¥çœ‹å·²ç»æœ‰å¤šå°‘ç§ç‰©å“ï¼Œä¸ºå¢åˆ æŸ¥æ”¹å‡½æ•°æä¾›æ–¹ä¾¿
 {
     int num=0;
     while (object[num].name.length() != 0) ++num;
     return num;
 }
 
-//½«±¾µØtxtÖĞµÄÊı¾İ×ª»¯ÎªObjectÀà
 void readTXT()
+//å°†æœ¬åœ°txtä¸­çš„æ•°æ®è½¬åŒ–ä¸ºObjectç±»ã€‚æŒ‰ç…§saveTXT()çš„è§„åˆ™ï¼Œ\nä¸ç©ºæ ¼ä¹‹é—´ä¸ºåç§°ï¼Œç©ºæ ¼ä¸\nä¹‹é—´ä¸ºä¿¡æ¯
 {
     string objectList;
     ifstream in("object.txt");
@@ -49,9 +49,10 @@ void readTXT()
 }
 
 void displayObject()
+//æ˜¾ç¤ºç‰©å“åˆ—è¡¨
 {
     int num=0;
-    cout << "µ±Ç°ËùÓĞÎïÆ·µÄĞÅÏ¢Îª£º" << endl;
+    cout << "å½“å‰æ‰€æœ‰ç‰©å“çš„ä¿¡æ¯ä¸ºï¼š" << endl;
     while (object[num].name.length() != 0)
     {
         cout << object[num].name << "    " << object[num].information <<endl;
@@ -60,15 +61,17 @@ void displayObject()
 }
 
 void addObject()
+//æ·»åŠ ç‰©å“
 {
     int num = kindsOfObject();
-    cout << "ĞèÒªÌí¼ÓµÄÎïÆ·Ãû³ÆÎª£º" << endl;
+    cout << "éœ€è¦æ·»åŠ çš„ç‰©å“åç§°ä¸ºï¼š" << endl;
     cin >> object[num].name;
-    cout << "ĞèÒªÌí¼Ó¸ÃÎïÆ·µÄĞÅÏ¢Îª£º" << endl;
+    cout << "éœ€è¦æ·»åŠ è¯¥ç‰©å“çš„ä¿¡æ¯ä¸ºï¼š" << endl;
     cin >> object[num].information;
 }
 
 int* findObjectPosition(const string& name)
+//è¾“å…¥åå­—ï¼ŒæŸ¥æ‰¾æ‰€æœ‰ç›¸åŒåç§°çš„ç‰©å“åœ¨çº¿æ€§è¡¨ä¸­çš„ä½ç½®
 {
     int* position = new int[256];
     int i=0;
@@ -86,12 +89,13 @@ int* findObjectPosition(const string& name)
 }
 
 void findObject()
+//æŸ¥æ‰¾ç‰©å“ï¼Œå°è£…findObjectPosition()
 {
-    cout << "ĞèÒª²éÕÒµÄÎïÆ·Ãû³ÆÎª£º" << endl;
+    cout << "éœ€è¦æŸ¥æ‰¾çš„ç‰©å“åç§°ä¸ºï¼š" << endl;
     string name;
     cin >> name;
     int* position = findObjectPosition(name);
-    if (position[0] == -1) cout << "ÔİÎŞ¸ÃÎïÆ·ĞÅÏ¢" <<endl;
+    if (position[0] == -1) cout << "æš‚æ— è¯¥ç‰©å“ä¿¡æ¯" <<endl;
     else
     {
         for (int i=0; position[i] != -1; ++i)
@@ -101,17 +105,18 @@ void findObject()
 }
 
 void deleteObject()
+//åˆ é™¤ç‰©å“
 {
-    cout << "ĞèÒªÉ¾³ıµÄÎïÆ·Ãû³ÆÎª£º" << endl;
+    cout << "éœ€è¦åˆ é™¤çš„ç‰©å“åç§°ä¸ºï¼š" << endl;
     string name;
     cin >> name;
     int* position = findObjectPosition(name);
-    if (position[0] == -1) cout << "ÔİÎŞ¸ÃÎïÆ·ĞÅÏ¢£¬ÎŞ·¨É¾³ı" <<endl;
+    if (position[0] == -1) cout << "æš‚æ— è¯¥ç‰©å“ä¿¡æ¯ï¼Œæ— æ³•åˆ é™¤" <<endl;
     else
     {
         for (int i=0; position[i] != -1; ++i)
             cout << object[position[i]].name << "    " << object[position[i]].information <<endl;
-        cout << "ĞèÒªÉ¾³ıµÄÎïÆ·ĞÅÏ¢ÎªµÚ¼¸Ïî£¿" << endl;
+        cout << "éœ€è¦åˆ é™¤çš„ç‰©å“ä¿¡æ¯ä¸ºç¬¬å‡ é¡¹ï¼Ÿ" << endl;
         int del;
         cin>>del;
         int num = kindsOfObject();
@@ -125,6 +130,7 @@ void deleteObject()
 }
 
 void saveTXT()
+//å°†Objectç±»æ•°æ®è½¬åŒ–ä¸ºtxtå­˜å‚¨ã€‚\nä¸ç©ºæ ¼ä¹‹é—´ä¸ºåç§°ï¼Œç©ºæ ¼ä¸\nä¹‹é—´ä¸ºä¿¡æ¯
 {
     string objectList;
     for (int i=0; object[i].name.length() != 0; ++i)
@@ -145,8 +151,8 @@ int main()
     readTXT();
     while (true)
     {
-        cout << "ÄúĞèÒª½øĞĞµÄ²Ù×÷Îª£º" << endl << "0£ºÍË³ö³ÌĞò" << endl << "1£ºÌí¼ÓÎïÆ·" << endl << "2£ºÉ¾³ıÎïÆ·" << endl
-             << "3£ºÏÔÊ¾ÎïÆ·ÁĞ±í" << endl << "4£º²éÕÒÎïÆ·ĞÅÏ¢" << endl;
+        cout << "æ‚¨éœ€è¦è¿›è¡Œçš„æ“ä½œä¸ºï¼š" << endl << "0ï¼šé€€å‡ºç¨‹åº" << endl << "1ï¼šæ·»åŠ ç‰©å“" << endl << "2ï¼šåˆ é™¤ç‰©å“" << endl
+             << "3ï¼šæ˜¾ç¤ºç‰©å“åˆ—è¡¨" << endl << "4ï¼šæŸ¥æ‰¾ç‰©å“ä¿¡æ¯" << endl;
         int operation;
         cin >> operation;
         switch (operation)
