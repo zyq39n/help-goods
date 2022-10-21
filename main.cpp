@@ -1,3 +1,5 @@
+//本程序用于记录物品信息，同时有增删查改功能，方便居民查找、发布和交换物品
+//by张益侨
 #include <iostream>
 #include <fstream>
 #include <string>
